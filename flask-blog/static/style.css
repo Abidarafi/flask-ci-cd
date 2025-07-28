@@ -1,51 +1,29 @@
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom right, #a1c4fd, #2193b0);
-  color: #333;
-}
-
-.container {
-  max-width: 800px;
-  margin: 50px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #b3d9ff, #004080);
+  color: #fff;
+  padding: 20px;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #005a8d;
+  color: #fff;
 }
 
-.post {
-  background: #f2f2f2;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-.btn, .delete-btn, .back-link {
-  display: inline-block;
-  background: #0074d9;
+a, button {
+  background: #0066cc;
   color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 8px 12px;
   text-decoration: none;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-
-.btn:hover, .delete-btn:hover, .back-link:hover {
-  background: #005a8d;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
 }
 
 input, textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
 }

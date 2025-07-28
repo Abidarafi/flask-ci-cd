@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Flask Blog</title>
+  <title>Simple Blog</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>My Blog</h1>
-    <a href="{{ url_for('create') }}" class="btn">+ New Post</a>
+  <h1>My Blog</h1>
+  <a href="{{ url_for('create') }}">Create New Post</a>
+  <ul>
     {% for post in posts %}
-      <div class="post">
+      <li>
         <h2>{{ post[1] }}</h2>
         <p>{{ post[2] }}</p>
-        <a href="{{ url_for('delete', id=post[0]) }}" class="delete-btn">Delete</a>
-      </div>
-    {% else %}
-      <p>No posts yet.</p>
+        <form action="{{ url_for('delete', id=post[0]) }}" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 </body>
 </html>
