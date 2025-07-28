@@ -1,17 +1,32 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import db, Post
+import sqlite3
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
 
-with app.app_context():
-    db.create_all()
+# ==== INIT DATABASE ====
+def init_db():
+    if not os.path.exists("blog.db"):
+        conn = sqlite3.connect('blog.db')
+        conn.execute('''CREATE TABLE posts (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            title TEXT NOT NULL,
+                            content TEXT NOT NULL
+                        )''')
+        conn.commit()
+        conn.close()
+
+init_db()
+
+# ==== ROUTES ====
 
 @app.route('/')
 def index():
-    posts = Post.query.all()
+    conn = sqlite3.connect('blog.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM posts ORDER BY id DESC")
+    posts = cursor.fetchall()
+    conn.close()
     return render_template('index.html', posts=posts)
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -19,28 +34,20 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        post = Post(title=title, content=content)
-        db.session.add(post)
-        db.session.commit()
+        conn = sqlite3.connect('blog.db')
+        conn.execute("INSERT INTO posts (title, content) VALUES (?, ?)", (title, content))
+        conn.commit()
+        conn.close()
         return redirect(url_for('index'))
     return render_template('create.html')
 
-@app.route('/edit/<int:id>', methods=['GET', 'POST'])
-def edit(id):
-    post = Post.query.get(id)
-    if request.method == 'POST':
-        post.title = request.form['title']
-        post.content = request.form['content']
-        db.session.commit()
-        return redirect(url_for('index'))
-    return render_template('edit.html', post=post)
-
 @app.route('/delete/<int:id>')
 def delete(id):
-    post = Post.query.get(id)
-    db.session.delete(post)
-    db.session.commit()
+    conn = sqlite3.connect('blog.db')
+    conn.execute("DELETE FROM posts WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

@@ -1,31 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Yuni Blog</title>
-  <style>
-    body { font-family: sans-serif; padding: 30px; background-color: #f5f9ff; }
-    .card { background: white; border-radius: 10px; box-shadow: 0 2px 10px #ccc; padding: 20px; margin-bottom: 20px; }
-    .btn { padding: 10px 20px; text-decoration: none; margin-right: 10px; }
-    .btn-new { background-color: #2b6cb0; color: white; }
-    .btn-edit { color: orange; }
-    .btn-delete { color: red; }
-  </style>
+  <meta charset="UTF-8">
+  <title>My Flask Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Latest Posts</h1>
-  <a href="/create" class="btn btn-new">+ New Post</a>
-  <hr>
-  {% if posts %}
+  <div class="container">
+    <h1>My Blog</h1>
+    <a href="{{ url_for('create') }}" class="btn">+ New Post</a>
     {% for post in posts %}
-      <div class="card">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.content[:200] }}...</p>
-        <a href="/edit/{{ loop.index0 }}" class="btn btn-edit">Edit</a>
-        <a href="/delete/{{ loop.index0 }}" class="btn btn-delete">Delete</a>
+      <div class="post">
+        <h2>{{ post[1] }}</h2>
+        <p>{{ post[2] }}</p>
+        <a href="{{ url_for('delete', id=post[0]) }}" class="delete-btn">Delete</a>
       </div>
+    {% else %}
+      <p>No posts yet.</p>
     {% endfor %}
-  {% else %}
-    <p>No Posts Yet!</p>
-  {% endif %}
+  </div>
 </body>
 </html>
