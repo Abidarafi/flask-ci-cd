@@ -1,0 +1,71 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #e0f0ff, #004080);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 25px;
+}
+
+a {
+    text-decoration: none;
+    color: #004080;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0055a5;
+}
+
+.post {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.edit, .delete, .add-btn, .back-btn {
+    margin-right: 10px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #dceeff;
+    color: #004080;
+    font-size: 14px;
+}
+
+.edit:hover, .delete:hover, .add-btn:hover, .back-btn:hover {
+    background-color: #b3dbff;
+}
