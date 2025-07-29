@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Buat Post Baru</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Tambah Post | Abid's Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Buat Post Baru</h1>
-        <form method="POST">
-            <input type="text" name="title" placeholder="Judul" required>
-            <textarea name="content" rows="6" placeholder="Isi tulisan..." required></textarea>
-            <button type="submit">Simpan</button>
-            <a href="{{ url_for('index') }}" class="back-btn">Kembali</a>
-        </form>
-    </div>
+  <div class="container">
+    <h1>Tambah Post Baru</h1>
+    <form method="post">
+      <input type="text" name="title" placeholder="Judul" required>
+      <textarea name="content" placeholder="Konten" required></textarea>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn back">Kembali</a>
+  </div>
 </body>
 </html>

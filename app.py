@@ -4,7 +4,6 @@ import os
 
 app = Flask(__name__)
 
-# Inisialisasi database (buat tabel kalau belum ada)
 def init_db():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -34,13 +33,11 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
         cursor.execute("INSERT INTO posts (title, content) VALUES (?, ?)", (title, content))
         conn.commit()
         conn.close()
-
         return redirect(url_for('index'))
     return render_template('create.html')
 
@@ -48,7 +45,6 @@ def create():
 def edit(id):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
@@ -56,7 +52,6 @@ def edit(id):
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
-
     cursor.execute("SELECT * FROM posts WHERE id = ?", (id,))
     post = cursor.fetchone()
     conn.close()

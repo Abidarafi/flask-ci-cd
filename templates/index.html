@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Abid's Blog</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Abid's Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Selamat Datang di Abid's Blog</h1>
-        <a href="{{ url_for('create') }}" class="add-btn">+ Tambah Post</a>
-
-        {% for post in posts %}
-        <div class="post">
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.content }}</p>
-            <div class="actions">
-                <a href="{{ url_for('edit', id=post.id) }}" class="edit">Edit</a>
-                <a href="{{ url_for('delete', id=post.id) }}" class="delete" onclick="return confirm('Yakin mau hapus?')">Delete</a>
-            </div>
-        </div>
-        {% endfor %}
+  <div class="container">
+    <h1>Selamat Datang di Abid's Blog</h1>
+    <a href="{{ url_for('create') }}" class="btn">+ Tambah Post</a>
+    <div class="posts">
+      {% for post in posts %}
+      <div class="post">
+        <h2>{{ post[1] }}</h2>
+        <p>{{ post[2] }}</p>
+        <a href="{{ url_for('edit', id=post[0]) }}" class="edit">Edit</a>
+        <a href="{{ url_for('delete', id=post[0]) }}" class="delete">Hapus</a>
+      </div>
+      {% else %}
+      <p>Tidak ada post. Buat post baru!</p>
+      {% endfor %}
     </div>
+  </div>
 </body>
 </html>
