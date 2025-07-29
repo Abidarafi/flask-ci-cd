@@ -75,7 +75,7 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Buat tabel jika belum ada
     app.run(debug=True, host='0.0.0.0', port=port)
-=======
+
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         c.execute("INSERT INTO posts (title, content) VALUES (?, ?)", (title, content))
