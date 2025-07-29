@@ -1,0 +1,29 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #b3d9ff, #004080);
+  color: #fff;
+  padding: 20px;
+}
+
+h1 {
+  color: #fff;
+}
+
+a, button {
+  background: #0066cc;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+input, textarea {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
